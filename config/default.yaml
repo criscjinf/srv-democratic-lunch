@@ -1,0 +1,9 @@
+service:
+  interval: 60
+api:
+  uri: 'http://localhost:3030'
+mail:
+  host: 'smtp.office365.com'
+  port: '587'
+  user: 'democraticlunch@outlook.com'
+  pass: 'DBServer123456'

@@ -1,0 +1,14 @@
+{
+  "service": {
+    "interval": "INTERVAL"
+  },
+  "api": {
+    "uri": "API_URL"
+  },
+  "mail": {
+    "host": "MAIL_HOST",
+    "port": "MAIL_PORT",
+    "user": "MAIL_USER",
+    "pass": "MAIL_PASS"
+  }
+}
