@@ -42,7 +42,7 @@ npm start
 npm test
 ```
 
-###Parâmetros
+### Parâmetros
 ```
 service:
   interval: tempo em segundos entre checagem da hora do fim da votação 
@@ -61,7 +61,9 @@ mail: configurações do e-mail que realiza a de notificação do inicio e fim d
 | - | - |
 | index | Fica aguardando uma votação começar para notificar os usuários  através de 2 loops interligados |
 | controllers/process-voting | Notifica o inicio da votação, aguarda o horário de finalizar, chama a api para encerramento e dispara o processo de notificação do usuário, esta é a classe central do serviço |
-| __tests__/factories.js | Desenvolvida para fins de testes a classe factory baseado no paterns de mesmo nome, gerando instancias de objetos. |
+| mail-sender | Responsavel pelo envio de fato do e-mail utilizando o componente nodemailer |
+| services | São os serviços de consumo da api |
 
-# Observações finais
-> O projeto em Delphi não contempla os cadastros de restaurantes, sendo registrados automaticamente alguns dados Fake.
+
+## Evolução do serviço
+Poderia ser implementada a opção de envio de SMS junto ao serviço dando uma segunda opção de notificação
