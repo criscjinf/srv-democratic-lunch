@@ -17,12 +17,13 @@ module.exports = class VotingsHandler {
     }
 
     $endDate() {
-        return this.$decodeDateBr(this.vouting.date, this.vouting.closingTime);
+        return this.$decodeDateBr(this.vouting.date_br, this.vouting.closingTime);
     }
 
     async endVoting() {
         try {
-            await this.voutingsService.endVoting();
+           const { data } =  await this.voutingsService.endVoting();
+           return data
         } catch (error) {
             console.log('Não foi possível Encerrar a Votação.');
             throw error;
@@ -32,20 +33,18 @@ module.exports = class VotingsHandler {
     $decodeDateBr(dateEncoded = '', timeEncoded) {
         const date = dateEncoded.split('/');
         const time = timeEncoded.split(':');
-
         const year = date[2];
-        const month = date[0];
-        const day = date[1];
+        const month = date[1];
+        const day = date[0];
         const hour = time[0];
         const minute = time[1];
-
-        return new Date(year, month, day, hour, minute);
+        return new Date(`${year}-${month}-${day} ${hour}:${minute}`);
     }
 
     async $getCurrentVoting() {
         try {
             const { data } = await this.voutingsService.getCurrentVoting();
-            return JSON.parse(data);
+            return data;
         } catch (error) {
             throw error
         }

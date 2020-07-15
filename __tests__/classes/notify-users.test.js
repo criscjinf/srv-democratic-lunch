@@ -5,6 +5,7 @@ const MailSender = require('../../src/libs/mail-sender');
 jest.mock('../../src/libs/mail-sender');  // MailSender is now a mock constructor
 
 const employee = factory.createEmployee();
+const restaurant = factory.createRestaurant();
 
 describe('Class NotifyUser', () => {
 
@@ -27,7 +28,7 @@ describe('Class NotifyUser', () => {
         const spy = jest.spyOn(notifyUsers, '$getEmployees')
             .mockImplementation(() => new Promise(resolve => resolve([employee])));
 
-        await notifyUsers.votingEnd();
+        await notifyUsers.votingEnd(restaurant);
         expect(spy).toHaveBeenCalled();
         expect(MailSender).toHaveBeenCalled();
     });

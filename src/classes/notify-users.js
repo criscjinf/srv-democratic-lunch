@@ -17,10 +17,10 @@ module.exports = class NotifyUsers {
         }
     }
 
-    async votingEnd() {
+    async votingEnd(restauranteWinner) {
         try {
             const emplooyes = await this.$getEmployees();
-            this.$sendNotification(this.$mapEmployees(emplooyes), 'Temos um ganhador!', `Que legal, Já sabemos qual o restaurante você irá almoçar hoje. Acesse o aplicativo para ficar sabendo!`);
+            this.$sendNotification(this.$mapEmployees(emplooyes), 'Temos um ganhador!', `Que legal, hoje vamos almoçar no restaurante ${restauranteWinner.name}!`);
         } catch (error) {
             console.log(`Não foi possível notificar o FINAL da votação!`);
             throw error;
@@ -57,7 +57,7 @@ module.exports = class NotifyUsers {
     async $getEmployees() {
         try {
             const { data } = await this.employeesService.get();
-            return JSON.parse(data);
+            return data;
         } catch (error) {
             throw error;
         }

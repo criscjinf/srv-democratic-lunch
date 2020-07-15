@@ -13,7 +13,7 @@ module.exports = class ProcessVoting {
             if (await this.votingHandler.isVotingStarted()) {
                 this.notifyUsers.votingStart();
 
-                await this.$doEndVoting();
+                await this.$doWaitEndVoting();
                 return true;
             }
             return false;
@@ -22,12 +22,12 @@ module.exports = class ProcessVoting {
         }
     }
 
-    async $doEndVoting() {
+    async $doWaitEndVoting() {
         return new Promise((resolve, reject) => {
             this.$execWithLoop(async () => {
                 try {
-                    await this.votingHandler.endVoting();
-                    this.notifyUsers.votingEnd();
+                    let restauranteWinner = await this.votingHandler.endVoting();
+                    this.notifyUsers.votingEnd(restauranteWinner);
                     resolve();
                 } catch (error) {
                     console.log(`Não foi possível finalizar a votação!`);

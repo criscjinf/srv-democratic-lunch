@@ -9,7 +9,7 @@
   "scripts": {
     "start": "sucrase-node src/index.js",
     "dev": "nodemon src/index.js --ignore __tests__",
-    "test": "INTERVAL=1 jest"
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.19.2",

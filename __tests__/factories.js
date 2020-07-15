@@ -7,12 +7,27 @@ const factory = new function () {
         const employer = {
             lockedProperties: ['id', 'locked'],
             id: 1,
-            name: faker.company.companyName(),
+            name: faker.name.findName(),
             cpf: faker.br.cpf(),
             email: faker.internet.email(),
             locked: false
         };
         return employer;
+    }
+
+    this.createRestaurant = function () {
+        //Utilizado para executar testes de integração
+        const restaurant = {
+            lockedProperties: ['id', 'locked', 'howManyTimeHaveWeBeen', 'lastDayHaveWeBeen', 'lockedProperties'],
+            id: 1,
+            name: faker.company.companyName(),
+            address: faker.address.streetAddress(),
+            phone: faker.phone.phoneNumber(),
+            locked: false,
+            howManyTimeHaveWeBeen: 0,
+            lastDayHaveWeBeen: null
+            }
+        return restaurant;
     }
 
     this.createVoting = function () {
